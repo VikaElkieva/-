@@ -6,54 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page - Loading Error</title>
     <style>
-        /* Base styles for page layout */
+        /* Base styles for the page layout */
         body {
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
-            position: relative;
         }
 
-        /* Responsive video container */
+        /* Simulated video loading layout */
         .video-container {
             width: 100%;
-            max-width: 1200px;
-            height: 90%;
+            max-width: 1600px; /* Max width for large screens */
+            margin: 0 auto;
             background-color: #e0e0e0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-            padding: 10px;
-            overflow: hidden;
-            transition: filter 0.5s;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px;
         }
 
-        /* Placeholder styling for mobile and desktop */
+        /* Style for large video thumbnail placeholder */
         .large-video-placeholder {
             grid-column: span 4;
-            height: 200px;
+            height: 400px; /* Increased height for PC */
             background: linear-gradient(90deg, #d3d3d3 25%, #c0c0c0 50%, #d3d3d3 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 5px;
         }
 
+        /* Style for smaller video thumbnail placeholders */
         .video-placeholder {
-            height: 100px;
+            width: 100%;
+            height: 200px; /* Increased height for PC */
             background: linear-gradient(90deg, #d3d3d3 25%, #c0c0c0 50%, #d3d3d3 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 5px;
         }
 
+        /* Simulating text block placeholders */
         .text-placeholder {
-            height: 20px;
+            height: 25px;
             background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
@@ -61,10 +58,14 @@
             margin-top: 8px;
         }
 
-        /* Loading animation */
+        /* Animation for loading effect */
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         /* Popup modal styling */
@@ -73,7 +74,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
+            width: 90%;
             max-width: 320px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.95);
@@ -92,13 +93,13 @@
 
         .popup p {
             margin: 10px 0;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #555;
         }
 
         .popup button {
             margin-top: 15px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background-color: #4285f4;
             color: white;
             border: none;
@@ -112,39 +113,46 @@
             background-color: #357ae8;
         }
 
-        /* Responsive grid adjustments */
-        @media (max-width: 600px) {
+        /* Background blur when popup is visible */
+        .blur-background {
+            filter: blur(3px);
+        }
+
+        /* Responsive adjustments for tablets */
+        @media (max-width: 1024px) {
+            .video-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .large-video-placeholder {
                 grid-column: span 2;
-                height: 150px;
+                height: 250px;
             }
 
             .video-placeholder {
-                height: 80px;
-            }
-
-            .popup {
-                width: 90%;
-                padding: 15px;
-            }
-
-            .popup h2 {
-                font-size: 1rem;
-            }
-
-            .popup p {
-                font-size: 0.9rem;
-            }
-
-            .popup button {
-                padding: 8px 15px;
-                font-size: 0.9rem;
+                height: 120px;
             }
         }
 
-        /* Blur effect when popup is visible */
-        .blur-background {
-            filter: blur(5px);
+        /* Responsive adjustments for mobile screens */
+        @media (max-width: 600px) {
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .large-video-placeholder {
+                grid-column: span 1;
+                height: 200px;
+            }
+
+            .video-placeholder {
+                height: 100px;
+            }
+
+            .text-placeholder {
+                height: 15px;
+            }
         }
     </style>
 </head>
@@ -164,7 +172,7 @@
         <div class="text-placeholder" style="grid-column: span 4; width: 60%;"></div>
         <div class="text-placeholder" style="grid-column: span 2; width: 45%;"></div>
         <div class="text-placeholder" style="grid-column: span 1; width: 30%;"></div>
-        <div class="text-placeholder" style="grid-column: span 1; width: 50%;"></div>
+        <div class="text-placeholder" style="grid-column: span 2; width: 50%;"></div>
     </div>
 
     <!-- Popup modal -->
@@ -182,7 +190,7 @@
             document.getElementById('videoContainer').classList.add('blur-background');
         }, 2000);
 
-        // Function for "Install VPN" button
+        // Function for the "Install VPN" button
         function installVPN() {
             alert('Redirecting to VPN installation...');
         }
