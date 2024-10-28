@@ -19,43 +19,53 @@
             overflow: hidden;
         }
 
-        /* Simulating a more realistic video loading layout */
+        /* Video container layout */
         .video-container {
-            width: 90%;
-            height: 90%;
+            width: 95%;
+            height: 95%;
             background-color: #e0e0e0;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: auto;
-            gap: 15px;
-            padding: 20px;
+            gap: 10px;
+            padding: 15px;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
-        /* Style for large video thumbnail placeholder */
+        /* Style for large video placeholder */
         .large-video-placeholder {
             grid-column: span 4;
-            height: 200px;
+            height: 250px;
             background: linear-gradient(90deg, #d3d3d3 25%, #c0c0c0 50%, #d3d3d3 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 5px;
         }
 
-        /* Style for smaller video thumbnail placeholders */
+        /* Style for smaller video thumbnails */
         .video-placeholder {
-            width: 100%;
-            height: 120px;
+            height: 150px;
             background: linear-gradient(90deg, #d3d3d3 25%, #c0c0c0 50%, #d3d3d3 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 5px;
         }
 
-        /* Simulating text block placeholders */
+        /* Placeholder for movie title and description */
         .text-placeholder {
+            grid-column: span 2;
             height: 20px;
+            background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+
+        .text-placeholder-full {
+            grid-column: span 4;
+            height: 30px;
             background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
@@ -79,11 +89,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            padding: 15px;
+            width: 340px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
             z-index: 1000;
             display: none;
             text-align: center;
@@ -91,24 +101,24 @@
 
         .popup h2 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
             color: #333;
         }
 
         .popup p {
             margin: 10px 0;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #555;
         }
 
         .popup button {
-            margin-top: 10px;
-            padding: 8px 16px;
+            margin-top: 15px;
+            padding: 12px 24px;
             background-color: #4285f4;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -121,37 +131,36 @@
         @media (max-width: 768px) {
             .video-container {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
             }
 
             .large-video-placeholder {
-                height: 150px;
+                height: 200px;
             }
 
             .video-placeholder {
-                height: 100px;
+                height: 120px;
             }
 
-            .text-placeholder {
+            .text-placeholder, .text-placeholder-full {
                 height: 18px;
             }
 
             .popup {
-                width: 240px;
-                padding: 10px;
+                width: 280px;
+                padding: 15px;
             }
 
             .popup h2 {
-                font-size: 1rem;
+                font-size: 1.4rem;
             }
 
             .popup p {
-                font-size: 0.8rem;
+                font-size: 1rem;
             }
 
             .popup button {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+                padding: 10px 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -162,17 +171,25 @@
         <!-- Large main video placeholder -->
         <div class="large-video-placeholder"></div>
 
-        <!-- Smaller video placeholders -->
+        <!-- Additional video placeholders for more realistic loading screen -->
         <div class="video-placeholder"></div>
         <div class="video-placeholder"></div>
         <div class="video-placeholder"></div>
         <div class="video-placeholder"></div>
 
-        <!-- Text placeholders simulating titles -->
-        <div class="text-placeholder" style="grid-column: span 4; width: 60%;"></div>
-        <div class="text-placeholder" style="grid-column: span 2; width: 45%;"></div>
-        <div class="text-placeholder" style="grid-column: span 1; width: 30%;"></div>
-        <div class="text-placeholder" style="grid-column: span 1; width: 50%;"></div>
+        <!-- Text placeholders for movie titles and descriptions -->
+        <div class="text-placeholder-full"></div>
+        <div class="text-placeholder"></div>
+        <div class="text-placeholder"></div>
+
+        <div class="video-placeholder"></div>
+        <div class="video-placeholder"></div>
+        <div class="video-placeholder"></div>
+        <div class="video-placeholder"></div>
+
+        <div class="text-placeholder-full"></div>
+        <div class="text-placeholder"></div>
+        <div class="text-placeholder"></div>
     </div>
 
     <!-- Popup modal -->
